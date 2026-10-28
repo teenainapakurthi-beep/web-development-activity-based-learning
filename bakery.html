@@ -1,0 +1,866 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweet Crumbs | Bakery & Cake Shop</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #d96c85;
+    --dark-pink: #a9425c;
+    --cream: #fff8f1;
+    --brown: #593b32;
+    --light-pink: #fde8ec;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--cream);
+    color: var(--brown);
+    line-height: 1.6;
+}
+
+header {
+    background: #fff;
+    padding: 15px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-shadow: 0 3px 12px #593b3210;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 27px;
+    color: var(--dark-pink);
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--brown);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: var(--pink);
+}
+
+.cart-btn, .primary-btn {
+    background: var(--pink);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 11px 19px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.hero {
+    min-height: 440px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 35px;
+    padding: 55px 8%;
+    background: var(--light-pink);
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(36px, 5vw, 55px);
+    line-height: 1.15;
+    color: var(--dark-pink);
+    margin: 15px 0;
+}
+
+.hero p {
+    margin: 15px 0;
+    color: #76564c;
+}
+
+.hero img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    border-radius: 120px 120px 18px 18px;
+}
+
+.tagline {
+    color: var(--pink);
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+section {
+    scroll-margin-top: 100px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 55px 22px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-heading h2 {
+    font-family: Georgia, serif;
+    color: var(--dark-pink);
+    font-size: 34px;
+}
+
+.section-heading p {
+    color: #896e64;
+    margin-top: 8px;
+}
+
+.offer {
+    background: var(--dark-pink);
+    color: white;
+    text-align: center;
+    padding: 23px;
+}
+
+.offer h2 {
+    font-family: Georgia, serif;
+    font-size: 28px;
+}
+
+.offer p {
+    margin-top: 5px;
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.toolbar input, .toolbar select {
+    padding: 12px;
+    border: 1px solid #e7c9cc;
+    background: white;
+    border-radius: 8px;
+    outline-color: var(--pink);
+}
+
+.toolbar input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.categories {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+
+.categories button {
+    padding: 10px 18px;
+    border-radius: 25px;
+    border: 1px solid #e5b8c1;
+    background: white;
+    color: var(--brown);
+    cursor: pointer;
+}
+
+.categories button.active,
+.categories button:hover {
+    background: var(--pink);
+    color: white;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 13px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px #593b320b;
+    transition: transform .2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.image-wrap {
+    height: 205px;
+    position: relative;
+    background: #f6e8df;
+}
+
+.image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--dark-pink);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 20px;
+}
+
+.card-info {
+    padding: 16px;
+}
+
+.card-info h3 {
+    font-family: Georgia, serif;
+    font-size: 19px;
+}
+
+.card-info p {
+    color: #896e64;
+    font-size: 13px;
+    margin: 7px 0;
+}
+
+.price {
+    color: var(--dark-pink);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.old-price {
+    color: #a49a96;
+    font-size: 13px;
+    text-decoration: line-through;
+    margin-left: 6px;
+}
+
+.card button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 11px;
+    background: var(--pink);
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 30px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform .25s;
+}
+
+.gallery img:hover {
+    transform: scale(1.025);
+}
+
+.custom {
+    background: #f8e5d9;
+}
+
+.custom-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    align-items: center;
+}
+
+.custom-inner img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.custom h2 {
+    font-family: Georgia, serif;
+    font-size: 34px;
+    color: var(--dark-pink);
+    margin: 10px 0;
+}
+
+.custom ul {
+    margin: 16px 0 20px 20px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.contact-card {
+    background: white;
+    padding: 23px;
+    border-radius: 12px;
+    border: 1px solid #f0ded7;
+}
+
+.contact-card h3 {
+    color: var(--dark-pink);
+    margin-bottom: 8px;
+}
+
+.contact-card p {
+    color: #76564c;
+    overflow-wrap: anywhere;
+}
+
+footer {
+    background: #593b32;
+    color: white;
+    padding: 32px 6%;
+    text-align: center;
+}
+
+footer p {
+    font-size: 13px;
+    margin-top: 8px;
+    color: #f5ded5;
+}
+
+@media (max-width: 900px) {
+    .products {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .hero {
+        padding: 40px 5%;
+    }
+}
+
+@media (max-width: 650px) {
+    header {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .hero, .custom-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .hero img {
+        height: 260px;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .image-wrap {
+        height: 155px;
+    }
+
+    .card-info {
+        padding: 11px;
+    }
+
+    .card-info h3 {
+        font-size: 16px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery img {
+        height: 170px;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-inner img {
+        height: 260px;
+    }
+
+    .container {
+        padding: 38px 15px;
+    }
+}
+
+@media (max-width: 360px) {
+    .products {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Sweet Crumbs</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#menu">Our Menu</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#custom">Custom Cakes</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="cart-btn" onclick="showCart()">
+        Cart (<span id="cartCount">0</span>)
+    </button>
+</header>
+
+<section class="hero" id="home">
+    <div>
+        <div class="tagline">Freshly baked with love</div>
+        <h1>Every Celebration Deserves a Sweet Treat</h1>
+        <p>
+            From beautiful birthday cakes to delicious pastries and
+            freshly baked cookies, make every moment extra special
+            with Sweet Crumbs Bakery.
+        </p>
+        <button class="primary-btn"
+            onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+            Explore Our Menu
+        </button>
+    </div>
+
+    <img
+        src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=85"
+        alt="Beautiful decorated celebration cake">
+</section>
+
+<section class="offer">
+    <h2>Seasonal Sweetness!</h2>
+    <p>Enjoy special discounts on selected bakery favourites.</p>
+    <p><strong>Up to 20% OFF</strong> on selected products.</p>
+</section>
+
+<section class="container" id="menu">
+    <div class="section-heading">
+        <h2>Our Delicious Menu</h2>
+        <p>Made fresh, served with love.</p>
+    </div>
+
+    <div class="toolbar">
+        <input type="search" id="search"
+            placeholder="Search cakes, pastries, cookies..."
+            aria-label="Search bakery products">
+
+        <select id="sort">
+            <option value="featured">Sort: Featured</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+        </select>
+    </div>
+
+    <div class="categories">
+        <button class="active" data-category="All">All Items</button>
+        <button data-category="Cakes">Cakes</button>
+        <button data-category="Pastries">Pastries</button>
+        <button data-category="Cookies">Cookies</button>
+        <button data-category="Cupcakes">Cupcakes</button>
+    </div>
+
+    <div class="products" id="productList"></div>
+</section>
+
+<section class="container" id="gallery">
+    <div class="section-heading">
+        <h2>Our Bakery Gallery</h2>
+        <p>A little look at our world of sweetness.</p>
+    </div>
+
+    <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80"
+             alt="Decorated celebration cake" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=700&q=80"
+             alt="Freshly baked cupcakes" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=700&q=80"
+             alt="Fresh bakery pastries" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=700&q=80"
+             alt="Chocolate chip cookies" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=700&q=80"
+             alt="Celebration cake" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=700&q=80"
+             alt="Freshly baked bread and bakery treats" loading="lazy">
+    </div>
+</section>
+
+<section class="custom" id="custom">
+    <div class="container custom-inner">
+        <img
+            src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=900&q=85"
+            alt="Custom decorated cake">
+
+        <div>
+            <div class="tagline">Made just for you</div>
+            <h2>Custom Cakes for Your Special Moments</h2>
+            <p>
+                Make birthdays, weddings, anniversaries and celebrations
+                memorable with a cake designed especially for you.
+            </p>
+
+            <ul>
+                <li>Birthday and wedding cakes</li>
+                <li>Flavour and filling choices</li>
+                <li>Personalised colours and decorations</li>
+                <li>Photo-inspired cake designs</li>
+            </ul>
+
+            <p><strong>Custom cakes start from ₹799.</strong></p>
+            <p>Final prices depend on size, flavour and design.</p>
+
+            <button class="primary-btn" onclick="customOrder()">
+                Request a Custom Cake
+            </button>
+        </div>
+    </div>
+</section>
+
+<section class="container" id="contact">
+    <div class="section-heading">
+        <h2>Visit Our Bakery</h2>
+        <p>We would love to make something delicious for you.</p>
+    </div>
+
+    <div class="contact-grid">
+        <div class="contact-card">
+            <h3>Store Address</h3>
+            <p>Sweet Crumbs Bakery</p>
+            <p>Shop No. 12, Main Road</p>
+            <p>Hyderabad, Telangana, India</p>
+        </div>
+
+        <div class="contact-card">
+            <h3>Contact Details</h3>
+            <p>Phone: +91 98765 43210</p>
+            <p>Email: hello@sweetcrumbs.example</p>
+            <p>Custom cake enquiries welcome.</p>
+        </div>
+
+        <div class="contact-card">
+            <h3>Opening Hours</h3>
+            <p>Monday–Saturday: 9 AM–9 PM</p>
+            <p>Sunday: 10 AM–8 PM</p>
+            <p>Fresh treats prepared daily.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <h2 class="logo" style="color:#ffd5df">Sweet Crumbs</h2>
+    <p>Freshly baked happiness for every occasion.</p>
+    <p>&copy; 2026 Sweet Crumbs Bakery. All rights reserved.</p>
+</footer>
+
+<script>
+const products = [
+    {
+        id: 1,
+        name: "Chocolate Truffle Cake",
+        category: "Cakes",
+        price: 799,
+        oldPrice: 999,
+        image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80",
+        description: "Rich chocolate cake layered with smooth chocolate ganache."
+    },
+    {
+        id: 2,
+        name: "Strawberry Cream Cake",
+        category: "Cakes",
+        price: 899,
+        oldPrice: 1099,
+        image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=600&q=80",
+        description: "Soft sponge cake with creamy strawberry flavour."
+    },
+    {
+        id: 3,
+        name: "Red Velvet Cake",
+        category: "Cakes",
+        price: 999,
+        oldPrice: 1199,
+        image: "https://images.unsplash.com/photo-1586788680434-30d324b2d46f?auto=format&fit=crop&w=600&q=80",
+        description: "Classic red velvet cake with cream cheese-style frosting."
+    },
+    {
+        id: 4,
+        name: "Black Forest Cake",
+        category: "Cakes",
+        price: 749,
+        oldPrice: 899,
+        image: "https://images.unsplash.com/photo-1542826438-bd32f43d626f?auto=format&fit=crop&w=600&q=80",
+        description: "Chocolate sponge with cream and cherry-inspired decoration."
+    },
+    {
+        id: 5,
+        name: "Chocolate Croissant",
+        category: "Pastries",
+        price: 120,
+        oldPrice: 150,
+        image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80",
+        description: "Flaky pastry with a delicious chocolate filling."
+    },
+    {
+        id: 6,
+        name: "Butter Croissant",
+        category: "Pastries",
+        price: 90,
+        oldPrice: 110,
+        image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80",
+        description: "Golden, flaky pastry ideal for breakfast."
+    },
+    {
+        id: 7,
+        name: "Chocolate Chip Cookies",
+        category: "Cookies",
+        price: 180,
+        oldPrice: 220,
+        image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80",
+        description: "Crunchy cookies filled with chocolate chips."
+    },
+    {
+        id: 8,
+        name: "Butter Cookies",
+        category: "Cookies",
+        price: 150,
+        oldPrice: 180,
+        image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80",
+        description: "Delicate, buttery cookies for tea-time treats."
+    },
+    {
+        id: 9,
+        name: "Vanilla Cupcakes",
+        category: "Cupcakes",
+        price: 80,
+        oldPrice: 100,
+        image: "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=600&q=80",
+        description: "Fluffy vanilla cupcakes topped with creamy frosting."
+    },
+    {
+        id: 10,
+        name: "Chocolate Cupcakes",
+        category: "Cupcakes",
+        price: 90,
+        oldPrice: 110,
+        image: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=600&q=80",
+        description: "Chocolate cupcakes for your sweet cravings."
+    },
+    {
+        id: 11,
+        name: "Custom Celebration Cake",
+        category: "Cakes",
+        price: 1299,
+        oldPrice: 1499,
+        image: "https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=600&q=80",
+        description: "A special cake with personalised decorations. Final design and price confirmed separately."
+    },
+    {
+        id: 12,
+        name: "Assorted Pastry Box",
+        category: "Pastries",
+        price: 399,
+        oldPrice: 499,
+        image: "https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?auto=format&fit=crop&w=600&q=80",
+        description: "A selection of bakery treats to share with family and friends."
+    }
+];
+
+let category = "All";
+let cart = [];
+
+function formatPrice(price) {
+    return new Intl.NumberFormat("en-IN", {
+        style: "currency",
+        currency: "INR",
+        maximumFractionDigits: 0
+    }).format(price);
+}
+
+function renderProducts() {
+    const search = document.getElementById("search")
+        .value.toLowerCase().trim();
+
+    const sort = document.getElementById("sort").value;
+
+    let filtered = products.filter(product => {
+        return (category === "All" || product.category === category) &&
+            (product.name + " " + product.category + " " +
+            product.description).toLowerCase().includes(search);
+    });
+
+    if (sort === "low") {
+        filtered.sort((a, b) => a.price - b.price);
+    }
+
+    if (sort === "high") {
+        filtered.sort((a, b) => b.price - a.price);
+    }
+
+    const list = document.getElementById("productList");
+
+    if (filtered.length === 0) {
+        list.innerHTML = '<p class="empty">No products found.</p>';
+        return;
+    }
+
+    list.innerHTML = filtered.map(product => {
+        const percent = Math.round(
+            (product.oldPrice - product.price) /
+            product.oldPrice * 100
+        );
+
+        return `
+            <article class="card">
+                <div class="image-wrap">
+                    <span class="badge">${percent}% OFF</span>
+                    <img src="${product.image}"
+                         alt="${product.name}" loading="lazy">
+                </div>
+
+                <div class="card-info">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+
+                    <div class="price">
+                        ${formatPrice(product.price)}
+                        <span class="old-price">
+                            ${formatPrice(product.oldPrice)}
+                        </span>
+                    </div>
+
+                    <button onclick="addToCart(${product.id})">
+                        Add to Cart
+                    </button>
+                </div>
+            </article>
+        `;
+    }).join("");
+}
+
+document.querySelectorAll(".categories button").forEach(button => {
+    button.addEventListener("click", () => {
+        category = button.dataset.category;
+
+        document.querySelectorAll(".categories button")
+            .forEach(item => item.classList.remove("active"));
+
+        button.classList.add("active");
+        renderProducts();
+    });
+});
+
+document.getElementById("search")
+    .addEventListener("input", renderProducts);
+
+document.getElementById("sort")
+    .addEventListener("change", renderProducts);
+
+function addToCart(id) {
+    const product = products.find(item => item.id === id);
+    cart.push(product);
+
+    document.getElementById("cartCount").textContent = cart.length;
+    alert(product.name + " added to your cart!");
+}
+
+function showCart() {
+    if (cart.length === 0) {
+        alert("Your cart is empty. Browse our bakery menu!");
+        return;
+    }
+
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    const items = cart.map((item, index) =>
+        `${index + 1}. ${item.name} - ${formatPrice(item.price)}`
+    ).join("\n");
+
+    const clear = confirm(
+        "YOUR CART\n\n" + items +
+        "\n\nTotal: " + formatPrice(total) +
+        "\n\nPress OK to clear the cart, or Cancel to keep shopping."
+    );
+
+    if (clear) {
+        cart = [];
+        document.getElementById("cartCount").textContent = 0;
+    }
+}
+
+function customOrder() {
+    const name = prompt("Enter your name:");
+    if (!name || !name.trim()) return;
+
+    const occasion = prompt(
+        "What is the occasion? (Birthday, wedding, anniversary...)"
+    );
+    if (!occasion || !occasion.trim()) return;
+
+    const flavour = prompt("Enter your preferred cake flavour:");
+    if (!flavour || !flavour.trim()) return;
+
+    alert(
+        "Thank you, " + name.trim() + "!\n\n" +
+        "Your custom cake enquiry:\n" +
+        "Occasion: " + occasion.trim() + "\n" +
+        "Flavour: " + flavour.trim() + "\n\n" +
+        "Please contact our bakery to confirm the design, price and order."
+    );
+}
+
+renderProducts();
+</script>
+
+</body>
+</html>
