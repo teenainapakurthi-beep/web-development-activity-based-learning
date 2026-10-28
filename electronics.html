@@ -1,0 +1,1248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechNova | Electronics Store</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #1749c7;
+    --dark: #101828;
+    --light: #f4f7fb;
+    --muted: #667085;
+    --border: #e5e9f0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+}
+
+button, input, select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+header {
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 12px #1018280c;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 16px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.logo span {
+    color: var(--dark);
+}
+
+.nav-links {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.cart {
+    border: 0;
+    border-radius: 8px;
+    padding: 10px 15px;
+    color: white;
+    background: var(--primary);
+    font-weight: bold;
+}
+
+.hero {
+    background: linear-gradient(115deg, #101c3d, #1749c7);
+    color: white;
+    padding: 65px 22px;
+}
+
+.hero-inner {
+    max-width: 1150px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 35px;
+}
+
+.eyebrow {
+    color: #a9c7ff;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: clamp(34px, 5vw, 54px);
+    line-height: 1.15;
+    margin: 15px 0;
+}
+
+.hero p {
+    color: #d9e4ff;
+    max-width: 520px;
+}
+
+.primary-btn {
+    background: white;
+    color: var(--primary);
+    padding: 13px 20px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 24px;
+    font-weight: bold;
+}
+
+.hero img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 42px 22px;
+}
+
+.section-title {
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.section-desc {
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+.benefits {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 45px;
+}
+
+.benefit {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.benefit strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.benefit p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.toolbar {
+    display: flex;
+    gap: 12px;
+    margin: 22px 0;
+    flex-wrap: wrap;
+}
+
+.toolbar input, .toolbar select {
+    padding: 12px;
+    border: 1px solid #d6dce6;
+    border-radius: 8px;
+    background: white;
+    outline-color: var(--primary);
+}
+
+.toolbar input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.category-buttons button {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 10px 17px;
+    border-radius: 25px;
+}
+
+.category-buttons button.active,
+.category-buttons button:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px #10182812;
+}
+
+.product-image {
+    height: 190px;
+    position: relative;
+    background: #edf1f8;
+    padding: 15px;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.discount {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #e53935;
+    color: white;
+    padding: 5px 8px;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.product-info {
+    padding: 16px;
+}
+
+.product-category {
+    color: var(--primary);
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: .7px;
+}
+
+.product-info h3 {
+    font-size: 16px;
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+.rating {
+    color: #d28b00;
+    font-size: 13px;
+    margin: 7px 0;
+}
+
+.price {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.old-price {
+    color: #9299a6;
+    text-decoration: line-through;
+    font-size: 13px;
+    margin-left: 5px;
+}
+
+.spec-short {
+    color: var(--muted);
+    font-size: 12px;
+    margin: 9px 0 13px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.card-actions button {
+    flex: 1;
+    padding: 10px 5px;
+    border-radius: 7px;
+    border: 1px solid var(--primary);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.add-btn {
+    color: white;
+    background: var(--primary);
+}
+
+.details-btn {
+    color: var(--primary);
+    background: white;
+}
+
+.compare-check {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 13px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.empty {
+    padding: 30px;
+    text-align: center;
+    color: var(--muted);
+    grid-column: 1 / -1;
+}
+
+.compare-section {
+    margin-top: 60px;
+    scroll-margin-top: 90px;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+th, td {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    background: #eaf0ff;
+}
+
+td:first-child {
+    font-weight: bold;
+}
+
+.remove-compare {
+    color: #c62828;
+    border: 0;
+    background: none;
+    margin-top: 6px;
+}
+
+.clear-btn {
+    padding: 10px 15px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: white;
+    margin: 14px 0;
+}
+
+.newsletter {
+    background: #eaf0ff;
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.newsletter p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.newsletter button {
+    padding: 12px 18px;
+    color: white;
+    background: var(--primary);
+    border: 0;
+    border-radius: 8px;
+}
+
+footer {
+    margin-top: 40px;
+    background: #101828;
+    color: white;
+    padding: 35px 22px;
+}
+
+.footer-inner {
+    max-width: 1150px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+footer p {
+    color: #c4ccda;
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #101828b8;
+    z-index: 30;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 650px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 25px;
+    position: relative;
+}
+
+.close-modal {
+    float: right;
+    border: 0;
+    background: #edf1f8;
+    padding: 8px 12px;
+    border-radius: 7px;
+}
+
+.modal-product-image {
+    display: block;
+    width: 100%;
+    height: 210px;
+    object-fit: contain;
+    margin: 20px 0;
+    background: #f5f7fb;
+    border-radius: 10px;
+}
+
+.spec-table {
+    width: 100%;
+    min-width: 0;
+    margin-top: 15px;
+}
+
+.spec-table td {
+    padding: 10px;
+}
+
+@media (max-width: 950px) {
+    .product-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .benefits {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .hero-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 42px 18px;
+    }
+
+    .hero img {
+        max-height: 210px;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .product-image {
+        height: 145px;
+        padding: 10px;
+    }
+
+    .product-info {
+        padding: 11px;
+    }
+
+    .product-info h3 {
+        font-size: 14px;
+    }
+
+    .price {
+        font-size: 17px;
+    }
+
+    .old-price {
+        display: block;
+        margin-left: 0;
+    }
+
+    .card-actions {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    main {
+        padding: 30px 14px;
+    }
+}
+
+@media (max-width: 360px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+        <a href="#" class="logo" style="text-decoration:none">
+            Tech<span>Nova</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#compare">Compare</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <button class="cart" onclick="showCart()">
+            Cart (<span id="cartCount">0</span>)
+        </button>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-inner">
+        <div>
+            <div class="eyebrow">Technology made simple</div>
+            <h1>Upgrade Your World with Smarter Technology</h1>
+            <p>
+                Discover laptops, smartphones, accessories and smart
+                devices at great prices. Find the right technology for
+                your work, studies and entertainment.
+            </p>
+            <button class="primary-btn"
+                onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+                Explore Products
+            </button>
+        </div>
+
+        <img
+            src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=900&q=85"
+            alt="Modern electronic devices">
+    </div>
+</section>
+
+<main>
+    <section class="benefits">
+        <div class="benefit">
+            <strong>Quality Products</strong>
+            <p>Explore a variety of electronic devices.</p>
+        </div>
+        <div class="benefit">
+            <strong>Great Offers</strong>
+            <p>Discover discounts on selected products.</p>
+        </div>
+        <div class="benefit">
+            <strong>Product Details</strong>
+            <p>Review specifications before choosing.</p>
+        </div>
+        <div class="benefit">
+            <strong>Easy Shopping</strong>
+            <p>Search, filter and compare products.</p>
+        </div>
+    </section>
+
+    <section id="products">
+        <h2 class="section-title">Explore Our Products</h2>
+        <p class="section-desc">
+            Browse our collection and find your next device.
+        </p>
+
+        <div class="toolbar">
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search laptops, phones, headphones..."
+                aria-label="Search products">
+
+            <select id="sortSelect" aria-label="Sort products">
+                <option value="default">Sort: Featured</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+                <option value="discount">Biggest Discount</option>
+            </select>
+        </div>
+
+        <div class="category-buttons">
+            <button class="active" data-category="All">All Products</button>
+            <button data-category="Laptop">Laptops</button>
+            <button data-category="Smartphone">Smartphones</button>
+            <button data-category="Accessory">Accessories</button>
+            <button data-category="Smart Device">Smart Devices</button>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="compare-section" id="compare">
+        <h2 class="section-title">Product Comparison</h2>
+        <p class="section-desc">
+            Select up to three products above to compare their
+            specifications and prices.
+        </p>
+
+        <div class="table-wrap">
+            <table id="compareTable">
+                <thead>
+                    <tr>
+                        <th>Specification</th>
+                        <th colspan="3">Choose products to compare</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <button class="clear-btn" onclick="clearComparison()">
+            Clear Comparison
+        </button>
+    </section>
+
+    <section class="newsletter">
+        <div>
+            <h2>Stay Updated with TechNova</h2>
+            <p>Explore new arrivals, product launches and special offers.</p>
+        </div>
+        <button onclick="subscribe()">Join Our Updates</button>
+    </section>
+</main>
+
+<footer id="contact">
+    <div class="footer-inner">
+        <div>
+            <h2>TechNova Electronics</h2>
+            <p>Your destination for everyday technology.</p>
+        </div>
+
+        <div>
+            <strong>Customer Support</strong>
+            <p>Email: support@technova.example</p>
+            <p>Phone: +91 98765 43210</p>
+        </div>
+
+        <div>
+            <strong>Store Information</strong>
+            <p>Hyderabad, Telangana, India</p>
+            <p>Monday–Saturday: 10 AM–8 PM</p>
+        </div>
+    </div>
+    <p style="text-align:center;margin-top:28px">
+        &copy; 2026 TechNova Electronics. Demonstration website.
+    </p>
+</footer>
+
+<div class="modal" id="productModal" onclick="closeOutside(event)">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeModal()">Close</button>
+        <div id="modalDetails"></div>
+    </div>
+</div>
+
+<script>
+const products = [
+    {
+        id: 1,
+        name: "HP Pavilion 15",
+        category: "Laptop",
+        price: 58999,
+        oldPrice: 64999,
+        rating: 4.5,
+        image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=80",
+        short: "Intel Core i5 | 16GB RAM | 512GB SSD",
+        specs: {
+            Processor: "Intel Core i5",
+            RAM: "16GB",
+            Storage: "512GB SSD",
+            Display: "15.6-inch Full HD",
+            Battery: "Up to 8 hours",
+            Warranty: "1 year"
+        }
+    },
+    {
+        id: 2,
+        name: "MacBook Air 13",
+        category: "Laptop",
+        price: 89990,
+        oldPrice: 99990,
+        rating: 4.8,
+        image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80",
+        short: "Apple silicon | 16GB RAM | 256GB SSD",
+        specs: {
+            Processor: "Apple silicon",
+            RAM: "16GB",
+            Storage: "256GB SSD",
+            Display: "13.6-inch",
+            Battery: "Long battery life",
+            Warranty: "1 year"
+        }
+    },
+    {
+        id: 3,
+        name: "Lenovo IdeaPad Slim",
+        category: "Laptop",
+        price: 46990,
+        oldPrice: 52990,
+        rating: 4.3,
+        image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=600&q=80",
+        short: "Intel Core i5 | 8GB RAM | 512GB SSD",
+        specs: {
+            Processor: "Intel Core i5",
+            RAM: "8GB",
+            Storage: "512GB SSD",
+            Display: "15.6-inch Full HD",
+            Battery: "Up to 7 hours",
+            Warranty: "1 year"
+        }
+    },
+    {
+        id: 4,
+        name: "Samsung Galaxy S25",
+        category: "Smartphone",
+        price: 74999,
+        oldPrice: 84999,
+        rating: 4.7,
+        image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
+        short: "256GB storage | AMOLED display",
+        specs: {
+            Processor: "Octa-core",
+            RAM: "12GB",
+            Storage: "256GB",
+            Display: "AMOLED",
+            Battery: "4000+ mAh class",
+            Warranty: "1 year"
+        }
+    },
+    {
+        id: 5,
+        name: "iPhone 16",
+        category: "Smartphone",
+        price: 69900,
+        oldPrice: 79900,
+        rating: 4.8,
+        image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=600&q=80",
+        short: "Apple chip | 128GB storage",
+        specs: {
+            Processor: "Apple A-series",
+            RAM: "Not specified",
+            Storage: "128GB",
+            Display: "OLED",
+            Battery: "All-day use, varies",
+            Warranty: "1 year"
+        }
+    },
+    {
+        id: 6,
+        name: "OnePlus Nord",
+        category: "Smartphone",
+        price: 27999,
+        oldPrice: 32999,
+        rating: 4.4,
+        image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+        short: "5G smartphone | 256GB storage",
+        specs: {
+            Processor: "Octa-core",
+            RAM: "8GB",
+            Storage: "256GB",
+            Display: "AMOLED",
+            Battery: "5000 mAh class",
+            Warranty: "1 year"
+        }
+    },
+    {
+        id: 7,
+        name: "Sony Wireless Headphones",
+        category: "Accessory",
+        price: 7990,
+        oldPrice: 9990,
+        rating: 4.5,
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80",
+        short: "Wireless audio | Noise cancellation",
+        specs: {
+            Connectivity: "Bluetooth",
+            Battery: "Varies by model",
+            Feature: "Noise cancellation",
+            Compatibility: "Bluetooth devices",
+            Warranty: "1 year"
+        }
+    },
+    {
+        id: 8,
+        name: "Logitech Wireless Mouse",
+        category: "Accessory",
+        price: 1299,
+        oldPrice: 1799,
+        rating: 4.3,
+        image: "https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=600&q=80",
+        short: "Wireless mouse | Ergonomic design",
+        specs: {
+            Connectivity: "Wireless",
+            Battery: "Replaceable battery",
+            Feature: "Optical tracking",
+            Compatibility: "Compatible computers",
+            Warranty: "Limited warranty"
+        }
+    },
+    {
+        id: 9,
+        name: "Mechanical Gaming Keyboard",
+        category: "Accessory",
+        price: 3499,
+        oldPrice: 4499,
+        rating: 4.4,
+        image: "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=600&q=80",
+        short: "Mechanical keys | Gaming design",
+        specs: {
+            Connectivity: "USB",
+            Keys: "Mechanical-style listing",
+            Feature: "Gaming keyboard",
+            Compatibility: "Compatible computers",
+            Warranty: "1 year"
+        }
+    },
+    {
+        id: 10,
+        name: "Apple Watch",
+        category: "Smart Device",
+        price: 29900,
+        oldPrice: 34900,
+        rating: 4.6,
+        image: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?auto=format&fit=crop&w=600&q=80",
+        short: "Smartwatch | Fitness tracking",
+        specs: {
+            Display: "Touchscreen",
+            Connectivity: "Bluetooth / Wi-Fi",
+            Feature: "Fitness tracking",
+            Compatibility: "Compatible Apple devices",
+            Warranty: "1 year"
+        }
+    },
+    {
+        id: 11,
+        name: "Amazon Echo Speaker",
+        category: "Smart Device",
+        price: 4499,
+        oldPrice: 5999,
+        rating: 4.3,
+        image: "https://images.unsplash.com/photo-1543512214-318c7553f230?auto=format&fit=crop&w=600&q=80",
+        short: "Smart speaker | Voice assistant",
+        specs: {
+            Connectivity: "Wi-Fi / Bluetooth",
+            Feature: "Voice assistant",
+            Audio: "Built-in speaker",
+            Compatibility: "Supported smart home devices",
+            Warranty: "1 year"
+        }
+    },
+    {
+        id: 12,
+        name: "Fitness Smart Band",
+        category: "Smart Device",
+        price: 2499,
+        oldPrice: 3499,
+        rating: 4.1,
+        image: "https://images.unsplash.com/photo-1576243345690-4e4b79b63288?auto=format&fit=crop&w=600&q=80",
+        short: "Activity tracking | Smart notifications",
+        specs: {
+            Display: "Digital display",
+            Connectivity: "Bluetooth",
+            Feature: "Activity tracking",
+            Compatibility: "Supported smartphones",
+            Warranty: "1 year"
+        }
+    }
+];
+
+let activeCategory = "All";
+let cart = [];
+let compared = [];
+
+const money = amount =>
+    new Intl.NumberFormat("en-IN", {
+        style: "currency",
+        currency: "INR",
+        maximumFractionDigits: 0
+    }).format(amount);
+
+function discount(product) {
+    return Math.round(
+        (product.oldPrice - product.price) / product.oldPrice * 100
+    );
+}
+
+function renderProducts() {
+    const query = document.getElementById("searchInput")
+        .value.toLowerCase().trim();
+
+    const sort = document.getElementById("sortSelect").value;
+
+    let filtered = products.filter(product => {
+        const categoryMatch = activeCategory === "All" ||
+            product.category === activeCategory;
+
+        const searchMatch = (
+            product.name + " " +
+            product.category + " " +
+            product.short
+        ).toLowerCase().includes(query);
+
+        return categoryMatch && searchMatch;
+    });
+
+    if (sort === "low") filtered.sort((a, b) => a.price - b.price);
+    if (sort === "high") filtered.sort((a, b) => b.price - a.price);
+    if (sort === "discount") {
+        filtered.sort((a, b) => discount(b) - discount(a));
+    }
+
+    const grid = document.getElementById("productGrid");
+
+    if (!filtered.length) {
+        grid.innerHTML =
+            '<div class="empty">No products found. Try another search.</div>';
+        return;
+    }
+
+    grid.innerHTML = filtered.map(product => `
+        <article class="product-card">
+            <div class="product-image">
+                <span class="discount">${discount(product)}% OFF</span>
+                <img
+                    src="${product.image}"
+                    alt="${product.name}"
+                    loading="lazy">
+            </div>
+
+            <div class="product-info">
+                <div class="product-category">${product.category}</div>
+                <h3>${product.name}</h3>
+                <div class="rating">
+                    ★★★★★ <span style="color:#667085">
+                    ${product.rating}/5</span>
+                </div>
+
+                <div class="price">${money(product.price)}</div>
+                <span class="old-price">${money(product.oldPrice)}</span>
+
+                <p class="spec-short">${product.short}</p>
+
+                <div class="card-actions">
+                    <button class="add-btn"
+                        onclick="addToCart(${product.id})">
+                        Add to Cart
+                    </button>
+
+                    <button class="details-btn"
+                        onclick="showDetails(${product.id})">
+                        Details
+                    </button>
+                </div>
+
+                <label class="compare-check">
+                    <input type="checkbox"
+                        ${compared.includes(product.id) ? "checked" : ""}
+                        onchange="toggleCompare(${product.id}, this.checked)">
+                    Compare product
+                </label>
+            </div>
+        </article>
+    `).join("");
+}
+
+document.querySelectorAll(".category-buttons button")
+    .forEach(button => {
+        button.addEventListener("click", () => {
+            activeCategory = button.dataset.category;
+
+            document.querySelectorAll(".category-buttons button")
+                .forEach(item => item.classList.remove("active"));
+
+            button.classList.add("active");
+            renderProducts();
+        });
+    });
+
+document.getElementById("searchInput")
+    .addEventListener("input", renderProducts);
+
+document.getElementById("sortSelect")
+    .addEventListener("change", renderProducts);
+
+function addToCart(id) {
+    const product = products.find(item => item.id === id);
+    cart.push(product);
+
+    document.getElementById("cartCount").textContent = cart.length;
+    alert(product.name + " added to your cart!");
+}
+
+function showCart() {
+    if (cart.length === 0) {
+        alert("Your cart is empty. Explore our products!");
+        return;
+    }
+
+    const total = cart.reduce((sum, product) => sum + product.price, 0);
+    const items = cart.map((product, index) =>
+        `${index + 1}. ${product.name} - ${money(product.price)}`
+    ).join("\n");
+
+    const remove = confirm(
+        "YOUR SHOPPING CART\n\n" +
+        items +
+        "\n\nTotal: " + money(total) +
+        "\n\nPress OK to clear the cart, or Cancel to keep shopping."
+    );
+
+    if (remove) {
+        cart = [];
+        document.getElementById("cartCount").textContent = 0;
+    }
+}
+
+function showDetails(id) {
+    const product = products.find(item => item.id === id);
+
+    const rows = Object.entries(product.specs).map(([key, value]) =>
+        `<tr><td>${key}</td><td>${value}</td></tr>`
+    ).join("");
+
+    document.getElementById("modalDetails").innerHTML = `
+        <h2>${product.name}</h2>
+        <img class="modal-product-image"
+            src="${product.image}" alt="${product.name}">
+
+        <p class="product-category">${product.category}</p>
+        <p class="rating">★ ${product.rating}/5 customer rating</p>
+        <h2 style="color:#1749c7">${money(product.price)}</h2>
+        <p style="color:#667085">
+            <span style="text-decoration:line-through">
+            ${money(product.oldPrice)}</span>
+            &nbsp; ${discount(product)}% discount
+        </p>
+
+        <h3 style="margin-top:20px">Product Specifications</h3>
+        <div class="table-wrap">
+            <table class="spec-table">
+                <tbody>${rows}</tbody>
+            </table>
+        </div>
+
+        <button class="cart" style="margin-top:20px"
+            onclick="addToCart(${product.id})">
+            Add to Cart
+        </button>
+    `;
+
+    document.getElementById("productModal").classList.add("open");
+}
+
+function closeModal() {
+    document.getElementById("productModal").classList.remove("open");
+}
+
+function closeOutside(event) {
+    if (event.target.id === "productModal") closeModal();
+}
+
+function toggleCompare(id, checked) {
+    if (checked) {
+        if (compared.length >= 3) {
+            alert("You can compare a maximum of three products.");
+            renderProducts();
+            return;
+        }
+
+        compared.push(id);
+    } else {
+        compared = compared.filter(item => item !== id);
+    }
+
+    renderProducts();
+    renderComparison();
+}
+
+function renderComparison() {
+    const selected = compared.map(id =>
+        products.find(product => product.id === id)
+    );
+
+    const allSpecs = [...new Set(
+        selected.flatMap(product => Object.keys(product.specs))
+    )];
+
+    const table = document.getElementById("compareTable");
+
+    if (!selected.length) {
+        table.innerHTML = `
+            <thead>
+                <tr><th>Specification</th>
+                <th colspan="3">Choose products to compare</th></tr>
+            </thead>
+            <tbody>
+                <tr><td colspan="4">
+                    Select products using the Compare product checkboxes.
+                </td></tr>
+            </tbody>
+        `;
+        return;
+    }
+
+    table.innerHTML = `
+        <thead>
+            <tr>
+                <th>Specification</th>
+                ${selected.map(product => `
+                    <th>
+                        ${product.name}
+                        <br>
+                        <button class="remove-compare"
+                            onclick="toggleCompare(${product.id}, false)">
+                            Remove
+                        </button>
+                    </th>
+                `).join("")}
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Price</td>
+                ${selected.map(product =>
+                    `<td>${money(product.price)}</td>`
+                ).join("")}
+            </tr>
+            <tr>
+                <td>Discount</td>
+                ${selected.map(product =>
+                    `<td>${discount(product)}%</td>`
+                ).join("")}
+            </tr>
+            <tr>
+                <td>Category</td>
+                ${selected.map(product =>
+                    `<td>${product.category}</td>`
+                ).join("")}
+            </tr>
+            <tr>
+                <td>Rating</td>
+                ${selected.map(product =>
+                    `<td>★ ${product.rating}/5</td>`
+                ).join("")}
+            </tr>
+            ${allSpecs.map(spec => `
+                <tr>
+                    <td>${spec}</td>
+                    ${selected.map(product =>
+                        `<td>${product.specs[spec] || "Not specified"}</td>`
+                    ).join("")}
+                </tr>
+            `).join("")}
+        </tbody>
+    `;
+}
+
+function clearComparison() {
+    compared = [];
+    renderProducts();
+    renderComparison();
+}
+
+function subscribe() {
+    alert("Thank you for your interest in TechNova!");
+}
+
+renderProducts();
+renderComparison();
+</script>
+
+</body>
+</html>
