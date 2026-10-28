@@ -1,0 +1,1038 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRONFIT | Fitness Center</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --black: #111315;
+    --dark: #1c2024;
+    --orange: #ff5b27;
+    --white: #ffffff;
+    --gray: #aab0b7;
+    --light: #f4f5f6;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 85px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--black);
+    line-height: 1.6;
+    background: white;
+}
+
+button, input, select, textarea {
+    font: inherit;
+}
+
+button, a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    cursor: pointer;
+}
+
+header {
+    background: var(--black);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 16px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -1px;
+    color: var(--orange);
+}
+
+.logo span {
+    color: white;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    color: #eee;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    transition: color .25s;
+}
+
+nav a:hover {
+    color: var(--orange);
+}
+
+.btn {
+    display: inline-block;
+    background: var(--orange);
+    color: white;
+    padding: 12px 22px;
+    border: 0;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background .25s, transform .25s;
+}
+
+.btn:hover {
+    background: #e94b18;
+    transform: translateY(-2px);
+}
+
+.hero {
+    min-height: 550px;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(90deg, #101214 10%, #101214d9 48%, #10121435),
+        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=85")
+        center/cover no-repeat;
+    color: white;
+}
+
+.hero-content {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    padding: 75px 22px;
+}
+
+.tag {
+    color: var(--orange);
+    font-size: 13px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1.03;
+    max-width: 720px;
+    margin: 18px 0;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+.hero h1 span {
+    color: var(--orange);
+}
+
+.hero p {
+    max-width: 520px;
+    color: #d0d3d7;
+    margin-bottom: 25px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 600px;
+    margin-top: 40px;
+}
+
+.stat strong {
+    color: var(--orange);
+    font-size: 26px;
+    display: block;
+}
+
+.stat span {
+    color: #ddd;
+    font-size: 12px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 65px 22px;
+}
+
+.section-heading {
+    margin-bottom: 32px;
+}
+
+.section-heading h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    text-transform: uppercase;
+    font-weight: 900;
+    line-height: 1.15;
+}
+
+.section-heading p {
+    color: #777e86;
+    margin-top: 10px;
+}
+
+.section-heading .tag {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.programs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.program-card {
+    background: var(--dark);
+    color: white;
+    border-radius: 7px;
+    overflow: hidden;
+    transition: transform .3s, box-shadow .3s;
+}
+
+.program-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 30px #11131525;
+}
+
+.program-card img {
+    width: 100%;
+    height: 215px;
+    object-fit: cover;
+    display: block;
+}
+
+.program-info {
+    padding: 22px;
+}
+
+.program-info h3 {
+    color: var(--orange);
+    font-size: 21px;
+    text-transform: uppercase;
+}
+
+.program-info p {
+    color: #c4c9ce;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.dark-section {
+    background: var(--black);
+    color: white;
+}
+
+.dark-section .section-heading p {
+    color: var(--gray);
+}
+
+.trainers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.trainer-card {
+    background: #202428;
+    overflow: hidden;
+    border-radius: 6px;
+    transition: transform .3s;
+}
+
+.trainer-card:hover {
+    transform: translateY(-5px);
+}
+
+.trainer-card img {
+    width: 100%;
+    height: 310px;
+    object-fit: cover;
+    display: block;
+}
+
+.trainer-info {
+    padding: 20px;
+}
+
+.trainer-info h3 {
+    font-size: 20px;
+}
+
+.trainer-info p {
+    color: var(--orange);
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.trainer-info .bio {
+    color: #c0c5ca;
+    margin-top: 10px;
+}
+
+.pricing {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.price-card {
+    padding: 28px 24px;
+    border: 1px solid #e0e3e7;
+    border-radius: 7px;
+    position: relative;
+    transition: transform .3s, border-color .3s;
+    background: white;
+}
+
+.price-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--orange);
+}
+
+.price-card.featured {
+    border: 2px solid var(--orange);
+}
+
+.popular {
+    display: inline-block;
+    background: var(--orange);
+    color: white;
+    font-size: 11px;
+    padding: 5px 9px;
+    font-weight: bold;
+    border-radius: 3px;
+    margin-bottom: 12px;
+}
+
+.price-card h3 {
+    text-transform: uppercase;
+    font-size: 22px;
+}
+
+.price {
+    font-size: 36px;
+    font-weight: 900;
+    margin: 15px 0;
+}
+
+.price small {
+    font-size: 13px;
+    font-weight: normal;
+    color: #737982;
+}
+
+.price-card > p {
+    color: #737982;
+    font-size: 13px;
+}
+
+.price-card ul {
+    list-style: none;
+    margin: 22px 0;
+}
+
+.price-card li {
+    border-bottom: 1px solid #edf0f2;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.price-card li::before {
+    content: "✓ ";
+    color: var(--orange);
+    font-weight: bold;
+}
+
+.price-card .btn {
+    width: 100%;
+    text-align: center;
+}
+
+.facilities {
+    background: var(--light);
+}
+
+.facility-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.facility {
+    background: white;
+    padding: 25px 18px;
+    border-radius: 6px;
+    border-bottom: 3px solid var(--orange);
+    transition: transform .25s;
+}
+
+.facility:hover {
+    transform: translateY(-5px);
+}
+
+.facility h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.facility p {
+    color: #737982;
+    font-size: 13px;
+}
+
+.schedule-wrap {
+    overflow-x: auto;
+    border-radius: 7px;
+    border: 1px solid #e1e5e9;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+    background: white;
+}
+
+th, td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #e5e8eb;
+}
+
+th {
+    background: var(--black);
+    color: white;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+td {
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background: #fff4ef;
+}
+
+.register {
+    background:
+        linear-gradient(120deg, #141719f2, #141719e8),
+        url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1500&q=80")
+        center/cover;
+    color: white;
+}
+
+.register-grid {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+.register-copy h2 {
+    font-size: clamp(30px, 4vw, 45px);
+    line-height: 1.15;
+    margin: 15px 0;
+    text-transform: uppercase;
+}
+
+.register-copy p {
+    color: #d0d3d7;
+    margin: 15px 0;
+}
+
+.form-box {
+    background: white;
+    color: var(--black);
+    padding: 28px;
+    border-radius: 7px;
+}
+
+.form-box h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d7dce1;
+    border-radius: 4px;
+    background: #fff;
+    outline-color: var(--orange);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-box .btn {
+    width: 100%;
+}
+
+#formMessage {
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.contact-card {
+    background: var(--light);
+    padding: 24px;
+    border-radius: 6px;
+}
+
+.contact-card h3 {
+    color: var(--orange);
+    margin-bottom: 10px;
+}
+
+.contact-card p {
+    font-size: 14px;
+    color: #666e76;
+    overflow-wrap: anywhere;
+}
+
+footer {
+    background: #090a0b;
+    color: white;
+    padding: 30px 22px;
+    text-align: center;
+}
+
+footer p {
+    color: #aab0b7;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+    .programs, .trainers, .pricing {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .facility-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .register-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .hero {
+        min-height: 500px;
+    }
+
+    .stats {
+        gap: 10px;
+    }
+
+    .stat strong {
+        font-size: 21px;
+    }
+
+    .programs, .trainers, .pricing, .facility-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trainer-card img {
+        height: 270px;
+    }
+
+    .container {
+        padding: 45px 16px;
+    }
+
+    .form-box {
+        padding: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="navbar">
+        <a href="#home" class="logo" style="text-decoration:none">
+            IRON<span>FIT</span>
+        </a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#programs">Programs</a>
+            <a href="#trainers">Trainers</a>
+            <a href="#membership">Membership</a>
+            <a href="#schedule">Classes</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <a href="#register" class="btn">Join Now</a>
+    </div>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <span class="tag">Train hard. Stay strong.</span>
+        <h1>Build Your <span>Best</span> Self.</h1>
+        <p>
+            Take control of your fitness journey with expert trainers,
+            modern equipment and workout programs designed to help
+            you reach your goals.
+        </p>
+
+        <a href="#membership" class="btn">Explore Memberships</a>
+
+        <div class="stats">
+            <div class="stat">
+                <strong>20+</strong>
+                <span>Workout Programs</span>
+            </div>
+            <div class="stat">
+                <strong>10+</strong>
+                <span>Expert Trainers</span>
+            </div>
+            <div class="stat">
+                <strong>7 Days</strong>
+                <span>Open Every Week</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container" id="programs">
+    <div class="section-heading">
+        <span class="tag">What we offer</span>
+        <h2>Choose Your Workout</h2>
+        <p>Find the right training program for your fitness goals.</p>
+    </div>
+
+    <div class="programs">
+        <article class="program-card">
+            <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=800&q=80"
+                 alt="Strength training">
+            <div class="program-info">
+                <h3>Strength Training</h3>
+                <p>Build strength, improve endurance and develop proper lifting technique.</p>
+            </div>
+        </article>
+
+        <article class="program-card">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80"
+                 alt="Cardio workout">
+            <div class="program-info">
+                <h3>Cardio Fitness</h3>
+                <p>Improve cardiovascular fitness with treadmill, cycling and conditioning sessions.</p>
+            </div>
+        </article>
+
+        <article class="program-card">
+            <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80"
+                 alt="Yoga and flexibility">
+            <div class="program-info">
+                <h3>Yoga & Flexibility</h3>
+                <p>Work on mobility, balance, flexibility and mindful movement.</p>
+            </div>
+        </article>
+
+        <article class="program-card">
+            <img src="https://images.unsplash.com/photo-1546483875-ad9014c88eba?auto=format&fit=crop&w=800&q=80"
+                 alt="Personal training">
+            <div class="program-info">
+                <h3>Personal Training</h3>
+                <p>Receive individual guidance based on your goals and experience.</p>
+            </div>
+        </article>
+
+        <article class="program-card">
+            <img src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?auto=format&fit=crop&w=800&q=80"
+                 alt="Functional training">
+            <div class="program-info">
+                <h3>Functional Fitness</h3>
+                <p>Practice movement patterns that support everyday strength and coordination.</p>
+            </div>
+        </article>
+
+        <article class="program-card">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+                 alt="Group fitness training">
+            <div class="program-info">
+                <h3>Group Workouts</h3>
+                <p>Stay motivated through instructor-led fitness sessions with others.</p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="dark-section" id="trainers">
+    <div class="container">
+        <div class="section-heading">
+            <span class="tag">Meet the team</span>
+            <h2>Expert Trainers</h2>
+            <p>Learn with supportive coaches who help you train with confidence.</p>
+        </div>
+
+        <div class="trainers">
+            <article class="trainer-card">
+                <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&w=800&q=80"
+                     alt="Fitness trainer">
+                <div class="trainer-info">
+                    <h3>Alex Morgan</h3>
+                    <p>STRENGTH & CONDITIONING</p>
+                    <p class="bio">Focuses on strength fundamentals, technique and progressive training.</p>
+                </div>
+            </article>
+
+            <article class="trainer-card">
+                <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=800&q=80"
+                     alt="Personal fitness coach">
+                <div class="trainer-info">
+                    <h3>Sarah Williams</h3>
+                    <p>PERSONAL TRAINING</p>
+                    <p class="bio">Helps members build consistent routines and personalised fitness plans.</p>
+                </div>
+            </article>
+
+            <article class="trainer-card">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80"
+                     alt="Gym coach">
+                <div class="trainer-info">
+                    <h3>David Carter</h3>
+                    <p>CARDIO & FUNCTIONAL FITNESS</p>
+                    <p class="bio">Leads conditioning sessions focused on stamina, movement and fitness.</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="container" id="membership">
+    <div class="section-heading">
+        <span class="tag">Simple pricing</span>
+        <h2>Membership Plans</h2>
+        <p>Choose a plan that fits your routine and budget.</p>
+    </div>
+
+    <div class="pricing">
+        <article class="price-card">
+            <h3>Basic</h3>
+            <div class="price">₹999 <small>/ month</small></div>
+            <p>Great for independent gym training.</p>
+            <ul>
+                <li>Gym equipment access</li>
+                <li>Changing rooms</li>
+                <li>Fitness orientation</li>
+                <li>Locker access subject to availability</li>
+            </ul>
+            <a href="#register" class="btn" onclick="choosePlan('Basic')">Choose Basic</a>
+        </article>
+
+        <article class="price-card featured">
+            <span class="popular">MOST POPULAR</span>
+            <h3>Premium</h3>
+            <div class="price">₹1,799 <small>/ month</small></div>
+            <p>For members who want more variety.</p>
+            <ul>
+                <li>All Basic benefits</li>
+                <li>Group fitness classes</li>
+                <li>Monthly progress review</li>
+                <li>Personal training consultation</li>
+            </ul>
+            <a href="#register" class="btn" onclick="choosePlan('Premium')">Choose Premium</a>
+        </article>
+
+        <article class="price-card">
+            <h3>Elite</h3>
+            <div class="price">₹2,999 <small>/ month</small></div>
+            <p>Extra support for your fitness journey.</p>
+            <ul>
+                <li>All Premium benefits</li>
+                <li>Personal training sessions</li>
+                <li>Individual workout plan</li>
+                <li>Priority class booking</li>
+            </ul>
+            <a href="#register" class="btn" onclick="choosePlan('Elite')">Choose Elite</a>
+        </article>
+    </div>
+</section>
+
+<section class="facilities" id="facilities">
+    <div class="container">
+        <div class="section-heading">
+            <span class="tag">Train better</span>
+            <h2>Our Facilities</h2>
+            <p>Everything you need for a comfortable workout experience.</p>
+        </div>
+
+        <div class="facility-grid">
+            <div class="facility">
+                <h3>Strength Zone</h3>
+                <p>Free weights, resistance machines and strength equipment.</p>
+            </div>
+            <div class="facility">
+                <h3>Cardio Area</h3>
+                <p>Treadmills, stationary bikes and cardio machines.</p>
+            </div>
+            <div class="facility">
+                <h3>Group Studio</h3>
+                <p>Space for instructor-led fitness and flexibility sessions.</p>
+            </div>
+            <div class="facility">
+                <h3>Changing Rooms</h3>
+                <p>Convenient changing facilities for members.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container" id="schedule">
+    <div class="section-heading">
+        <span class="tag">Plan your week</span>
+        <h2>Class Schedule</h2>
+        <p>Sample weekly timetable. Contact the gym to confirm availability.</p>
+    </div>
+
+    <div class="schedule-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>Days</th>
+                    <th>Time</th>
+                    <th>Trainer</th>
+                    <th>Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Strength Training</td>
+                    <td>Mon, Wed, Fri</td>
+                    <td>6:00 AM</td>
+                    <td>Alex</td>
+                    <td>All levels</td>
+                </tr>
+                <tr>
+                    <td>Cardio Blast</td>
+                    <td>Mon, Thu, Sat</td>
+                    <td>7:30 AM</td>
+                    <td>David</td>
+                    <td>Beginner / Intermediate</td>
+                </tr>
+                <tr>
+                    <td>Yoga & Flexibility</td>
+                    <td>Tue, Thu</td>
+                    <td>6:00 PM</td>
+                    <td>Sarah</td>
+                    <td>All levels</td>
+                </tr>
+                <tr>
+                    <td>Functional Fitness</td>
+                    <td>Wed, Fri</td>
+                    <td>7:00 PM</td>
+                    <td>David</td>
+                    <td>Intermediate</td>
+                </tr>
+                <tr>
+                    <td>Group Workout</td>
+                    <td>Saturday</td>
+                    <td>8:00 AM</td>
+                    <td>Sarah</td>
+                    <td>All levels</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="register" id="register">
+    <div class="container register-grid">
+        <div class="register-copy">
+            <span class="tag">Start today</span>
+            <h2>Your Fitness Journey Starts Here.</h2>
+            <p>
+                Fill in the registration form to express your interest
+                in joining IRONFIT. Our team can help you explore
+                membership options and workout programs.
+            </p>
+            <p><strong>New member enquiries are welcome.</strong></p>
+        </div>
+
+        <form class="form-box" id="registrationForm">
+            <h3>Membership Registration</h3>
+
+            <div class="form-group">
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" required
+                    placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" required
+                    placeholder="you@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" required
+                    pattern="[0-9+\-\s]{10,15}"
+                    placeholder="Enter your phone number">
+            </div>
+
+            <div class="form-group">
+                <label for="plan">Membership Plan *</label>
+                <select id="plan" required>
+                    <option value="">Select a plan</option>
+                    <option>Basic</option>
+                    <option>Premium</option>
+                    <option>Elite</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="program">Preferred Program</label>
+                <select id="program">
+                    <option>Strength Training</option>
+                    <option>Cardio Fitness</option>
+                    <option>Yoga & Flexibility</option>
+                    <option>Personal Training</option>
+                    <option>Functional Fitness</option>
+                    <option>Group Workouts</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Fitness Goals</label>
+                <textarea id="message"
+                    placeholder="Tell us about your goals (optional)"></textarea>
+            </div>
+
+            <button type="submit" class="btn">Submit Registration</button>
+            <p id="formMessage" role="status"></p>
+        </form>
+    </div>
+</section>
+
+<section class="container" id="contact">
+    <div class="section-heading">
+        <span class="tag">Get in touch</span>
+        <h2>Visit IRONFIT</h2>
+        <p>Contact us for membership information and class enquiries.</p>
+    </div>
+
+    <div class="contact-grid">
+        <div class="contact-card">
+            <h3>Address</h3>
+            <p>IRONFIT Fitness Center</p>
+            <p>Main Road, Hyderabad</p>
+            <p>Telangana, India</p>
+        </div>
+
+        <div class="contact-card">
+            <h3>Contact</h3>
+            <p>Phone: +91 98765 43210</p>
+            <p>Email: info@ironfit.example</p>
+        </div>
+
+        <div class="contact-card">
+            <h3>Opening Hours</h3>
+            <p>Monday–Saturday: 5 AM–10 PM</p>
+            <p>Sunday: 6 AM–12 PM</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="logo">IRON<span>FIT</span></div>
+    <p>Stronger every day. One workout at a time.</p>
+    <p>&copy; 2026 IRONFIT Fitness Center. All rights reserved.</p>
+</footer>
+
+<script>
+function choosePlan(plan) {
+    document.getElementById("plan").value = plan;
+}
+
+document.getElementById("registrationForm")
+    .addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("fullName").value.trim();
+        const plan = document.getElementById("plan").value;
+
+        document.getElementById("formMessage").textContent =
+            "Thank you, " + name +
+            "! Your " + plan +
+            " membership enquiry has been prepared successfully.";
+
+        this.reset();
+    });
+</script>
+
+</body>
+</html>
